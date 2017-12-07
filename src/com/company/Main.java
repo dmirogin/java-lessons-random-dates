@@ -9,17 +9,17 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Wazzup! Take me two date in special format 'dd.mm.yyyy'");
 
-        DateParser parser = new DateParser();
+        SimpleDateFormat format = new SimpleDateFormat("dd.M.yyyy");
         Scanner scanner = new Scanner(System.in);
 
         try {
-            Date start = parser.getDateFromString(scanner.nextLine());
-            Date end = parser.getDateFromString(scanner.nextLine());
+            Date start = format.parse(scanner.nextLine());
+            Date end = format.parse(scanner.nextLine());
 
             DateRangeGenerator generator = new DateRangeGenerator(start, end);
             List<Date> dates = generator.getRange();
             for (Date date : dates) {
-                System.out.println(date);
+                System.out.println(format.format(date));
             }
         } catch (ParseException exception) {
             System.out.println("Wrong format. You are dumb!");

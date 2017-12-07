@@ -1,5 +1,7 @@
 package com.company;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class DateRangeGenerator {
@@ -40,9 +42,9 @@ public class DateRangeGenerator {
     private int getDayInterval() {
         long startTimestamp = start.getTime();
         long endTimestamp = end.getTime();
-        long interval = endTimestamp - startTimestamp;
+        long interval = (endTimestamp - startTimestamp) / 1000;
 
-        return (int) interval / (1000 * 60 * 60 * 24);
+        return (int) interval / (60 * 60 * 24);
     }
 
     private int getRandomIntInInterval(int min, int max) {
@@ -50,6 +52,7 @@ public class DateRangeGenerator {
         return random.nextInt((max - min) + 1) + min;
     }
 
+    @NotNull
     private Date addDays(Date date, int days) {
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(date);
